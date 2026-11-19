@@ -17,8 +17,16 @@ public class ReturnOperation implements OperationHandler {
 
     private void validateTransaction(FruitTransaction transaction) {
         if (transaction == null) {
-            throw new IllegalArgumentException("Transaction cannot be null");
+            throw new IllegalArgumentException(
+                    "Transaction cannot be null");
         }
+
+        if (transaction.getFruit() == null
+                || transaction.getFruit().isBlank()) {
+            throw new IllegalArgumentException(
+                    "Fruit cannot be null or empty");
+        }
+
         if (transaction.getQuantity() < 0) {
             throw new IllegalArgumentException(
                     "Quantity cannot be negative");
